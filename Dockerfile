@@ -1,24 +1,16 @@
 FROM alpine:3.21.3
 
-LABEL dockerfile.version="v25.01" dockerfile.release-date="2025-01-23" org.opencontainers.image.source="https://github.com/CyberHotline/itflow-docker"
+LABEL org.opencontainers.image.source="https://github.com/CyberHotline/itflow-docker"
+
 # Set up ENVs that will be utilized in compose file.
-ENV TZ=Etc/UTC
-
+ENV TZ=Africa/Cairo
 ENV ITFLOW_NAME="CyberHotline IT Desk"
-
 ENV ITFLOW_URL=desk.cyberhotline.net
-
 ENV ITFLOW_PORT=8080
-
 ENV ITFLOW_REPO=github.com/cyberhotline/itflow
-
 ENV ITFLOW_REPO_BRANCH=main
-
-# apache2 log levels: emerg, alert, crit, error, warn, notice, info, debug
 ENV ITFLOW_LOG_LEVEL=notice
-
 ENV ITFLOW_DB_HOST=itflow-db
-
 ENV ITFLOW_DB_PASS=null
 
 # Set timezone from TZ ENV

@@ -1,0 +1,38 @@
+networks:
+  itflow-db:
+    name: itflow-db
+
+volumes:
+  itflow-db:
+  itflow-contents:
+
+services:
+  itflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: itflow
+    ports:
+      - '8080:8080'
+    depends_on: 
+      - itflow-db
+    networks:
+      - itflow-db
+    environment:
+      - ITFLOW_DB_HOST=${DB_HOST}
+      - ITFLOW_DB_PASS=${DB_PASS}
+    volumes:
+      - itflow-contents:/var/www/html
+
+  itflow-db:
+    image: mariadb:11.7.2-noble
+    hostname: itflow-db
+    networks:
+      - itflow-db
+    environment:
+      - MARIADB_RANDOM_ROOT_PASSWORD=true
+      - MARIADB_DATABASE=${DB_NAME}
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASS}
+    volumes:
+      - itflow-db:/var/lib/mysql/
