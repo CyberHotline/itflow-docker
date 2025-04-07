@@ -1,7 +1,6 @@
 FROM alpine:3.21.3
 
-LABEL dockerfile.version="v25.01" dockerfile.release-date="2025-01-23"
-
+LABEL dockerfile.version="v25.01" dockerfile.release-date="2025-01-23" org.opencontainers.image.source="https://github.com/CyberHotline/itflow-docker"
 # Set up ENVs that will be utilized in compose file.
 ENV TZ=Etc/UTC
 
