@@ -51,7 +51,7 @@ RUN apk add \
     php84-apache2
 
 # Set the work dir to the git repo. 
-WORKDIR /var/www/html
+WORKDIR /var/www/localhost/htdocs
 
 # Edit php.ini file
 
@@ -65,11 +65,11 @@ COPY entrypoint.sh /usr/bin/
 
 # Create crontab entries
 
-RUN echo "0       1       *       *       *       /usr/bin/php84 /var/www/html/scripts/cron.php" >> /etc/crontabs/apache
-RUN echo "*       *       *       *       *       /usr/bin/php84 /var/www/html/scripts/cron_ticket_email_parser.php" >> /etc/crontabs/apache
-RUN echo "*       *       *       *       *       /usr/bin/php84 /var/www/html/scripts/cron_mail_queue.php" >> /etc/crontabs/apache
-RUN echo "0       2       *       *       *       /usr/bin/php84 /var/www/html/scripts/cron_certificate_refresher.php" >> /etc/crontabs/apache
-RUN echo "0       3       *       *       *       /usr/bin/php84 /var/www/html/scripts/cron_domain_refresher.php" >> /etc/crontabs/apache
+RUN echo "0       1       *       *       *       /usr/bin/php84 /var/www/localhost/htdocs/scripts/cron.php" >> /etc/crontabs/apache
+RUN echo "*       *       *       *       *       /usr/bin/php84 /var/www/localhost/htdocs/scripts/cron_ticket_email_parser.php" >> /etc/crontabs/apache
+RUN echo "*       *       *       *       *       /usr/bin/php84 /var/www/localhost/htdocs/scripts/cron_mail_queue.php" >> /etc/crontabs/apache
+RUN echo "0       2       *       *       *       /usr/bin/php84 /var/www/localhost/htdocs/scripts/cron_certificate_refresher.php" >> /etc/crontabs/apache
+RUN echo "0       3       *       *       *       /usr/bin/php84 /var/www/localhost/htdocs/scripts/cron_domain_refresher.php" >> /etc/crontabs/apache
 
 RUN chmod +x /usr/bin/entrypoint.sh
 
